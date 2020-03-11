@@ -4,7 +4,9 @@ namespace Faithgen\AppBuild\Http\Controllers;
 
 use Faithgen\AppBuild\Http\Requests\BuildAppRequest;
 use Faithgen\AppBuild\Jobs\BuildApp;
+use Faithgen\AppBuild\Models\Build;
 use Faithgen\AppBuild\Services\BuildService;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
@@ -15,6 +17,7 @@ use Faithgen\AppBuild\Http\Resources\Build as BuildResource;
 class BuildController extends Controller
 {
     use APIResponses;
+    use AuthorizesRequests;
 
     /**
      * @var BuildService
@@ -79,5 +82,12 @@ class BuildController extends Controller
         BuildResource::wrap('builds');
 
         return BuildResource::collection($builds);
+    }
+
+    public function buildLogs(Build $build)
+    {
+        $this->authorize('view', $build);
+        $build->load('buildLogs');
+        return $build->buildLogs;
     }
 }

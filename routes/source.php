@@ -15,4 +15,5 @@ Route::prefix('builds/')
     ->group(function () {
         Route::post('', [BuildController::class, 'buildApp']);
         Route::get('', [BuildController::class, 'index']);
+        Route::get('{build}', [BuildController::class, 'buildLogs']);
     });
