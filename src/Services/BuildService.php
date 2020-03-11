@@ -50,9 +50,6 @@ class BuildService extends CRUDServices
      */
     public function getParentRelationship()
     {
-        return [
-            ParentModel::class,
-            'relationshipName',
-        ];
+        return auth()->user()->builds();
     }
 }

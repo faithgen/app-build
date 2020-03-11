@@ -41,7 +41,7 @@ class ModuleController extends Controller
         return response()->json([
             'modules' => ModuleResource::collection($modules),
             'data' => [
-                'app_name' => auth()->user()->profile_app_name
+                'app_name' => auth()->user()->profile->app_name
             ]
         ], 200);
     }
