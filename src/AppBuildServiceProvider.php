@@ -2,6 +2,7 @@
 
 namespace Faithgen\AppBuild;
 
+use Faithgen\AppBuild\Services\ModuleService;
 use FaithGen\SDK\Traits\ConfigTrait;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,19 +15,21 @@ class AppBuildServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerRoutes(__DIR__ . '/routes/build.php', __DIR__ . '/routes/source.php');
+        $this->registerRoutes(__DIR__ . '/../routes/build.php', __DIR__ . '/../routes/source.php');
 
         $this->publishes([
             __DIR__ . '/../config/config.php' => config_path('faithgen-build.php'),
         ], 'faithgen-build-config');
 
         $this->setUpSourceFiles(function () {
-            $this->loadMigrationsFrom(__DIR__ . '../database/migrations');
+            $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
             $this->publishes([
-                __DIR__ . '../database/migrations/' => database_path('migrations'),
+                __DIR__ . '/../database/migrations/' => database_path('migrations'),
             ], 'faithgen-build-migrations');
         });
+
+        $this->app->singleton(ModuleService::class);
     }
 
     /**
