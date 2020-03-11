@@ -1,8 +1,7 @@
 <?php
 
-namespace App;
+namespace Faithgen\AppBuild\Models;
 
-use Faithgen\AppBuild\Models\Build;
 use FaithGen\SDK\Models\UuidModel;
 
 class BuildLog extends UuidModel

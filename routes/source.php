@@ -14,4 +14,5 @@ Route::name('modules.')
 Route::prefix('builds/')
     ->group(function () {
         Route::post('', [BuildController::class, 'buildApp']);
+        Route::get('', [BuildController::class, 'index']);
     });

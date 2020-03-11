@@ -2,7 +2,6 @@
 
 namespace Faithgen\AppBuild\Models;
 
-use App\BuildLog;
 use FaithGen\SDK\Models\UuidModel;
 use FaithGen\SDK\Traits\Relationships\Belongs\BelongsToMinistryTrait;
 
