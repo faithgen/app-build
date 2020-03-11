@@ -3,7 +3,7 @@
 namespace Faithgen\AppBuild\Http\Controllers;
 
 use Faithgen\AppBuild\Services\ModuleService;
-use FaithGen\SDK\Http\Requests\AddModulesRequest;
+use Faithgen\AppBuild\Http\Requests\AddModulesRequest;
 use Faithgen\AppBuild\Http\Resources\Module as ModuleResource;
 use Illuminate\Routing\Controller;
 use InnoFlash\LaraStart\Traits\APIResponses;
