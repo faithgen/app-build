@@ -31,15 +31,19 @@ class ModuleController extends Controller
     /**
      * Fetches the modules this ministry is subscribed to
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
         $modules = $this->moduleService->getModel()
             ->active()
             ->get();
-        ModuleResource::wrap('modules');
-        return ModuleResource::collection($modules);
+
+        return response()->json([
+            'modules' => ModuleResource::collection($modules),
+            'data' => [
+                'app_name' => auth()->user()->profile_app_name
+            ]
+        ], 200);
     }
 
     public function addModules(AddModulesRequest $request)
