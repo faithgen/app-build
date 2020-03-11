@@ -1,6 +1,6 @@
 <?php
 
-namespace Faithgen\AppBuild\Traits\Relationships\Has;
+namespace Faithgen\AppBuild\Traits;
 
 use Faithgen\AppBuild\Models\MinistryModule;
 

@@ -2,6 +2,7 @@
 
 namespace Faithgen\AppBuild\Services;
 
+use Faithgen\AppBuild\Models\MinistryModule;
 use Faithgen\AppBuild\Models\Module;
 use Illuminate\Database\Eloquent\Model as ParentModel;
 use InnoFlash\LaraStart\Services\CRUDServices;
@@ -63,12 +64,10 @@ class ModuleService extends CRUDServices
      */
     public function invalidateModules()
     {
-        return $this->getModel()
-            ->whereHas('ministryModules', function ($ministryModule) {
-                return $ministryModule->where('ministry_id', auth()->user()->id);
-            })->update([
-                'active' => false
-            ]);
+        return MinistryModule::where('ministry_id', auth()->user()->id)
+            ->update([
+            'active' => false
+        ]);
     }
 
     /**
@@ -77,7 +76,7 @@ class ModuleService extends CRUDServices
      * @param array $modules
      * @return bool if the assignment worked or not
      */
-    public function addModules(array $modules) : bool
+    public function addModules(array $modules): bool
     {
         try {
             foreach ($modules as $module) {

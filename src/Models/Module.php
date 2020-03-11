@@ -2,9 +2,9 @@
 
 namespace Faithgen\AppBuild\Models;
 
+use Faithgen\AppBuild\Traits\ManyMinistryModules;
 use FaithGen\SDK\Models\UuidModel;
 use FaithGen\SDK\Traits\ActiveTrait;
-use FaithGen\SDK\Traits\Relationships\Has\ManyMinistryModules;
 use Illuminate\Support\Str;
 
 final class Module extends UuidModel
