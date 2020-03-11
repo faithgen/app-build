@@ -22,7 +22,7 @@ class AppBuildServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/../config/config.php' => config_path('app-build.php'),
-            ], 'config');
+            ], 'app-build-config');
 
             // Publishing the views.
             /*$this->publishes([
