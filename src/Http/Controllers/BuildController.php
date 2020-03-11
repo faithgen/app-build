@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
 use InnoFlash\LaraStart\Http\Helper;
 use InnoFlash\LaraStart\Traits\APIResponses;
 use Faithgen\AppBuild\Http\Resources\Build as BuildResource;
+use Faithgen\AppBuild\Http\Resources\BuildLog as LogResource;
 
 class BuildController extends Controller
 {
@@ -88,6 +89,8 @@ class BuildController extends Controller
     {
         $this->authorize('view', $build);
         $build->load('buildLogs');
-        return $build->buildLogs;
+        LogResource::wrap('logs');
+
+        return LogResource::collection($build->buildLogs);
     }
 }
