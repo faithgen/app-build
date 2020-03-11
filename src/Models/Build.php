@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Faithgen\AppBuild\Models;
 
 use FaithGen\SDK\Models\UuidModel;
 use FaithGen\SDK\Traits\Relationships\Belongs\BelongsToMinistryTrait;

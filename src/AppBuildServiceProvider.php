@@ -2,6 +2,7 @@
 
 namespace Faithgen\AppBuild;
 
+use Faithgen\AppBuild\Services\BuildService;
 use Faithgen\AppBuild\Services\ModuleService;
 use FaithGen\SDK\Traits\ConfigTrait;
 use Illuminate\Support\ServiceProvider;
@@ -30,6 +31,7 @@ class AppBuildServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton(ModuleService::class);
+        $this->app->singleton(BuildService::class);
     }
 
     /**
