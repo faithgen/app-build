@@ -3,6 +3,7 @@
 namespace Faithgen\AppBuild\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use InnoFlash\LaraStart\Http\Helper;
 
 class BuildLog extends JsonResource
 {
@@ -14,6 +15,12 @@ class BuildLog extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'task' => $this->task,
+            'result' => $this->result,
+            'success' => (bool) $this->success,
+            'logged_on' => Helper::getDates($this->created_at)
+        ];
     }
 }

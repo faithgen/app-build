@@ -7,6 +7,9 @@ use FaithGen\SDK\Models\UuidModel;
 class BuildLog extends UuidModel
 {
     protected $guarded = ['id'];
+    protected $hidden = [
+      'build_id'
+    ];
 
     /**
      * Links this log to a build.

@@ -17,7 +17,7 @@ class CreateBuildLogsTable extends Migration
             $table->string('id')->index();
             $table->string('build_id', 150)->index();
             $table->string('task');
-            $table->json('result');
+            $table->text('result');
             $table->boolean('success');
             $table->timestamps();
 

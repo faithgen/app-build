@@ -4,6 +4,7 @@ namespace Faithgen\AppBuild\Http\Controllers;
 
 use Faithgen\AppBuild\Http\Requests\BuildAppRequest;
 use Faithgen\AppBuild\Jobs\BuildApp;
+use Faithgen\AppBuild\Jobs\FinishBuilds;
 use Faithgen\AppBuild\Models\Build;
 use Faithgen\AppBuild\Services\BuildService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -79,6 +80,8 @@ class BuildController extends Controller
             ->with('buildLogs')
             ->latest()
             ->paginate(Helper::getLimit($request));
+
+        FinishBuilds::dispatch(auth()->user()->id);
 
         BuildResource::wrap('builds');
 
