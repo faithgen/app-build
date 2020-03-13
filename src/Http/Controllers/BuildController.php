@@ -3,6 +3,8 @@
 namespace Faithgen\AppBuild\Http\Controllers;
 
 use Faithgen\AppBuild\Http\Requests\BuildAppRequest;
+use Faithgen\AppBuild\Http\Resources\Build as BuildResource;
+use Faithgen\AppBuild\Http\Resources\BuildLog as LogResource;
 use Faithgen\AppBuild\Jobs\BuildApp;
 use Faithgen\AppBuild\Jobs\FinishBuilds;
 use Faithgen\AppBuild\Models\Build;
@@ -13,8 +15,6 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
 use InnoFlash\LaraStart\Http\Helper;
 use InnoFlash\LaraStart\Traits\APIResponses;
-use Faithgen\AppBuild\Http\Resources\Build as BuildResource;
-use Faithgen\AppBuild\Http\Resources\BuildLog as LogResource;
 
 class BuildController extends Controller
 {
@@ -46,7 +46,7 @@ class BuildController extends Controller
     public function buildApp(BuildAppRequest $request)
     {
         $profileUpdated = auth()->user()->profile()->update([
-            'app_name' => Str::title($request->app_name)
+            'app_name' => $request->app_name
         ]);
 
         if ($profileUpdated) {
@@ -62,7 +62,7 @@ class BuildController extends Controller
                 }
                 $this->buildService->createFromParent(['version' => $version]);
             }
-            BuildApp::dispatch();
+            BuildApp::dispatch($request->release);
             return $this->successResponse('Building app now, you will be notified via email when its done');
         } else abort(500, 'Failed to update app name');
     }

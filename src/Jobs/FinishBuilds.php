@@ -37,13 +37,16 @@ class FinishBuilds implements ShouldQueue
         $pendingBuilds = Build::where([
             'ministry_id' => $this->ministryId,
             'status' => 'building'
-        ])->get();
+        ])->where(function ($build) {
+            return $build->whereDate('created_at', '>=', now()->addHours(5));
+        })->get();
 
         foreach ($pendingBuilds as $pendingBuild) {
             $failedLogsCount = $pendingBuild->buildLogs()
                 ->where('success', false)
                 ->where('task', '!=', 'copy:logo')
                 ->count();
+
             if ($failedLogsCount) $status = 'failed';
             else $status = 'successful';
 
