@@ -48,10 +48,15 @@ class BuildController extends Controller
             'app_name' => $request->app_name
         ]);
 
+        if (auth()->user()->buildRequests()->whereRelease($request->release)->count())
+            abort(401, 'You already have a build lined up, dont`t worry it will use the latest info');
+
         if ($profileUpdated) {
             if ($request->release) {
                 $lastBuild = auth()->user()->builds()->latest()->first();
+
                 if (!$lastBuild) $version = '1.0.0';
+
                 else {
                     $version = (int)((string)Str::of($lastBuild->version)
                         ->replace('.', ''));
@@ -59,10 +64,11 @@ class BuildController extends Controller
                     $version = str_split($version);
                     $version = implode('.', $version);
                 }
+
                 $this->buildService->createFromParent(['version' => $version]);
             }
-            BuildApp::dispatch($request->release);
-            return $this->successResponse('Building app now, you will be notified via email when its done');
+            BuildApp::dispatchNow($request->release, auth()->user()->id);
+            return $this->successResponse('App build request sent, you will be notified via email when its done');
         } else abort(500, 'Failed to update app name');
     }
 

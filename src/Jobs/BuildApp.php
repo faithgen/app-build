@@ -2,6 +2,7 @@
 
 namespace Faithgen\AppBuild\Jobs;
 
+use Faithgen\AppBuild\Models\BuildRequest;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -17,13 +18,20 @@ class BuildApp implements ShouldQueue
     private bool $release;
 
     /**
+     * @var string
+     */
+    private string $ministryId;
+
+    /**
      * Create a new job instance.
      *
      * @param bool $release
+     * @param string $ministryId
      */
-    public function __construct(bool $release)
+    public function __construct(bool $release, string $ministryId)
     {
         $this->release = $release;
+        $this->ministryId = $ministryId;
     }
 
     /**
@@ -33,6 +41,9 @@ class BuildApp implements ShouldQueue
      */
     public function handle()
     {
-        //todo run command with release tag
+        BuildRequest::create([
+            'ministry_id' => $this->ministryId,
+            'release' => $this->release
+        ]);
     }
 }
