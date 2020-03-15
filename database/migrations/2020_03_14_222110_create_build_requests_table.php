@@ -18,6 +18,7 @@ class CreateBuildRequestsTable extends Migration
             $table->string('ministry_id', 150)->index();
             $table->boolean('release');
             $table->boolean('processing')->default(false);
+            $table->boolean('processed')->default(false);
             $table->timestamps();
 
             $table->foreign('ministry_id')->references('id')->on('ministries')->onDelete('cascade');
