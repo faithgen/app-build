@@ -48,7 +48,10 @@ class BuildController extends Controller
             'app_name' => $request->app_name
         ]);
 
-        if (auth()->user()->buildRequests()->whereRelease($request->release)->count())
+        if (auth()->user()->buildRequests()
+            ->whereRelease($request->release)
+            ->whereProcessing(false)
+            ->count())
             abort(401, 'You already have a build lined up, dont`t worry it will use the latest info');
 
         if ($profileUpdated) {
