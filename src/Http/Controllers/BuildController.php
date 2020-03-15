@@ -95,6 +95,7 @@ class BuildController extends Controller
     {
         $this->authorize('view', $build);
         $build->load('buildLogs');
+
         LogResource::wrap('logs');
 
         return LogResource::collection($build->buildLogs);
