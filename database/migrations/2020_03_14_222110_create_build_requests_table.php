@@ -17,6 +17,7 @@ class CreateBuildRequestsTable extends Migration
             $table->string('id')->index();
             $table->string('ministry_id', 150)->index();
             $table->boolean('release');
+            $table->enum('template', ['pioneer'])->default('pioneer');
             $table->boolean('processing')->default(false);
             $table->boolean('processed')->default(false);
             $table->timestamps();

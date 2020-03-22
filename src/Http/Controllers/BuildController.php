@@ -51,7 +51,7 @@ class BuildController extends Controller
         if (auth()->user()->buildRequests()
             ->where([
                 'release' => $request->release,
-                'processing' => false,
+             //   'processing' => false,
                 'processed' => false
             ])->count())
             abort(401, 'You already have a build lined up, dont`t worry it will use the latest info');
