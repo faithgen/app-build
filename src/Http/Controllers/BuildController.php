@@ -51,7 +51,8 @@ class BuildController extends Controller
         if (auth()->user()->buildRequests()
             ->where([
                 'release' => $request->release,
-             //   'processing' => false,
+                'template_id' => $request->template_id,
+                //   'processing' => false,
                 'processed' => false
             ])->count())
             abort(401, 'You already have a build lined up, dont`t worry it will use the latest info');
@@ -72,7 +73,7 @@ class BuildController extends Controller
 
                 $this->buildService->createFromParent(['version' => $version]);
             }
-            BuildApp::dispatchNow($request->release, auth()->user()->id);
+            BuildApp::dispatchNow($request->release, auth()->user()->id, $request->template_id);
             return $this->successResponse('App build request sent, you will be notified via email when its done');
         } else abort(500, 'Failed to update app name');
     }

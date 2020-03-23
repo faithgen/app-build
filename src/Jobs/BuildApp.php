@@ -23,15 +23,22 @@ class BuildApp implements ShouldQueue
     private string $ministryId;
 
     /**
+     * @var string
+     */
+    private string $templateId;
+
+    /**
      * Create a new job instance.
      *
      * @param bool $release
      * @param string $ministryId
+     * @param string $templateId
      */
-    public function __construct(bool $release, string $ministryId)
+    public function __construct(bool $release, string $ministryId, string $templateId)
     {
         $this->release = $release;
         $this->ministryId = $ministryId;
+        $this->templateId = $templateId;
     }
 
     /**
@@ -43,6 +50,7 @@ class BuildApp implements ShouldQueue
     {
         BuildRequest::create([
             'ministry_id' => $this->ministryId,
+            'template_id' => $this->templateId,
             'release' => $this->release
         ]);
     }
