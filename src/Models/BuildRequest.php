@@ -10,4 +10,14 @@ class BuildRequest extends UuidModel
     use BelongsToMinistryTrait;
 
     protected $guarded = ['id'];
+
+    /**
+     * Links this build request to parent template.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    function template()
+    {
+        return $this->belongsTo(Template::class);
+    }
 }
