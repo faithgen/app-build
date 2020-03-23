@@ -16,5 +16,5 @@ return [
     ],
 
     //The parent server to fetch templates from.
-    'parent_server' => 'http://localhost:8002'
+    'parent_server' => 'http://localhost:8002/'
 ];
