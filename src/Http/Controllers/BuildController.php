@@ -73,6 +73,7 @@ class BuildController extends Controller
 
                 $this->buildService->createFromParent(['version' => $version]);
             }
+
             BuildApp::dispatchNow($request->release, auth()->user()->id, $request->template_id);
             return $this->successResponse('App build request sent, you will be notified via email when its done');
         } else abort(500, 'Failed to update app name');
