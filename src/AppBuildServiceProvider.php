@@ -30,6 +30,12 @@ class AppBuildServiceProvider extends ServiceProvider
             ], 'faithgen-build-migrations');
         });
 
+        if(!config('faithgen-sdk.source')){
+            $this->publishes([
+                __DIR__ . '/../storage' => storage_path('app/public')
+            ], 'faithgen-build-storage');
+        }
+
         $this->app->singleton(ModuleService::class);
         $this->app->singleton(BuildService::class);
     }

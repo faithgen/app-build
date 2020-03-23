@@ -81,8 +81,7 @@ class BuildController extends Controller
     /**
      * Gets the builds of the app paginated.
      *
-     * @param Request $request
-     *
+     * @param Request $request     *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index(Request $request)
