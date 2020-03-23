@@ -16,13 +16,14 @@ class CreateBuildRequestsTable extends Migration
         Schema::create('build_requests', function (Blueprint $table) {
             $table->string('id')->index();
             $table->string('ministry_id', 150)->index();
+            $table->string('template_id', 150)->index();
             $table->boolean('release');
-            $table->enum('template', ['pioneer'])->default('pioneer');
             $table->boolean('processing')->default(false);
             $table->boolean('processed')->default(false);
             $table->timestamps();
 
             $table->foreign('ministry_id')->references('id')->on('ministries')->onDelete('cascade');
+            $table->foreign('template_id')->references('id')->on('templates')->onDelete('cascade');
         });
     }
 
