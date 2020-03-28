@@ -45,7 +45,7 @@
         "laravel": {
             "providers": [
                 "Faithgen\\AppBuild\\AppBuildServiceProvider",
-                "Faithgen\\AppBuild\\\\Providers\\AppBuildAuthServiceProvider"
+                "Faithgen\\AppBuild\\Providers\\AppBuildAuthServiceProvider"
             ],
             "aliases": {
                 "AppBuild": "Faithgen\\AppBuild\\AppBuildFacade"
