@@ -3,7 +3,7 @@
 namespace Faithgen\AppBuild\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use InnoFlash\LaraStart\Http\Helper;
+use InnoFlash\LaraStart\Helper;
 
 class BuildLog extends JsonResource
 {
