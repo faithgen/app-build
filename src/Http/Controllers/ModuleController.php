@@ -2,6 +2,8 @@
 
 namespace Faithgen\AppBuild\Http\Controllers;
 
+use Faithgen\AppBuild\Http\Resources\ModuleDetails;
+use Faithgen\AppBuild\Models\Module;
 use Faithgen\AppBuild\Models\Template;
 use Faithgen\AppBuild\Services\ModuleService;
 use Faithgen\AppBuild\Http\Requests\AddModulesRequest;
@@ -56,5 +58,20 @@ class ModuleController extends Controller
 
         if ($this->moduleService->addModules($request->modules))
             return $this->successResponse('Modules updated successfully');
+    }
+
+    /**
+     * Gets the module with its images.
+     *
+     * @param Module $module
+     * @return ModuleDetails
+     */
+    public function show(Module $module)
+    {
+        $module->load(['images']);
+
+        ModuleDetails::withoutWrapping();
+
+        return new ModuleDetails($module);
     }
 }

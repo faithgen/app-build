@@ -9,6 +9,7 @@ Route::name('modules.')
     ->group(function () {
         Route::get('', [ModuleController::class, 'index']);
         Route::post('', [ModuleController::class, 'addModules']);
+        Route::get('{module}', [ModuleController::class, 'show']);
     });
 
 Route::prefix('builds/')

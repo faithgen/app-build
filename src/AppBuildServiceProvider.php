@@ -61,7 +61,6 @@ class AppBuildServiceProvider extends ServiceProvider
     {
         return [
             'prefix' => config('faithgen-build.prefix'),
-            'namespace' => "FaithGen\AppBuild\Http\Controllers",
             'middleware' => config('faithgen-build.middlewares'),
         ];
     }
