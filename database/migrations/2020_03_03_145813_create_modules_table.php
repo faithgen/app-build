@@ -19,6 +19,7 @@ class CreateModulesTable extends Migration
             $table->string('repository');
             $table->string('implementation');
             $table->string('module_class');
+            $table->text('description')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();
         });
