@@ -6,6 +6,7 @@ use Faithgen\AppBuild\Traits\HasManyBuildRequests;
 use FaithGen\SDK\Models\UuidModel;
 use FaithGen\SDK\Traits\Relationships\Morphs\CommentableTrait;
 use FaithGen\SDK\Traits\Relationships\Morphs\ImageableTrait;
+use FaithGen\SDK\Traits\StorageTrait;
 use Illuminate\Support\Str;
 
 class Template extends UuidModel
@@ -13,6 +14,7 @@ class Template extends UuidModel
     use HasManyBuildRequests;
     use ImageableTrait;
     use CommentableTrait;
+    use StorageTrait;
 
     protected $guarded = ['id'];
 
@@ -24,5 +26,28 @@ class Template extends UuidModel
     function getNameAttribute($val)
     {
         return Str::title($val);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    function filesDir()
+    {
+        return 'templates';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    function getFileName()
+    {
+        return $this->images()
+            ->pluck('name')
+            ->toArray();
+    }
+
+    public function getImageDimensions()
+    {
+        return [0];
     }
 }
