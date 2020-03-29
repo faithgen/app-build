@@ -38,6 +38,7 @@ class ModuleController extends Controller
     {
         $modules = $this->moduleService->getModel()
             ->active()
+            ->exclude(['description'])
             ->get();
 
         return response()->json([

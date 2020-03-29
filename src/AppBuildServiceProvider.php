@@ -18,12 +18,12 @@ class AppBuildServiceProvider extends ServiceProvider
     {
         $this->registerRoutes(__DIR__ . '/../routes/build.php', __DIR__ . '/../routes/source.php');
 
-        $this->publishes([
-            __DIR__ . '/../config/config.php' => config_path('faithgen-build.php'),
-        ], 'faithgen-build-config');
-
         $this->setUpSourceFiles(function () {
             $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+
+            $this->publishes([
+                __DIR__ . '/../config/config.php' => config_path('faithgen-build.php'),
+            ], 'faithgen-build-config');
 
             $this->publishes([
                 __DIR__ . '/../database/migrations/' => database_path('migrations'),
