@@ -13,6 +13,7 @@ class Template extends UuidModel
     use ImageableTrait;
 
     protected $guarded = ['id'];
+
     protected $hidden = [
         'created_at',
         'updated_at',

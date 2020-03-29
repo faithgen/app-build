@@ -2,14 +2,18 @@
 
 namespace Faithgen\AppBuild\Http\Controllers;
 
+use Carbon\Carbon;
+use Faithgen\AppBuild\Http\Requests\AddModulesRequest;
+use Faithgen\AppBuild\Http\Resources\Module as ModuleResource;
 use Faithgen\AppBuild\Http\Resources\ModuleDetails;
+use Faithgen\AppBuild\Http\Resources\Template as TemplateResource;
 use Faithgen\AppBuild\Models\Module;
 use Faithgen\AppBuild\Models\Template;
 use Faithgen\AppBuild\Services\ModuleService;
-use Faithgen\AppBuild\Http\Requests\AddModulesRequest;
-use Faithgen\AppBuild\Http\Resources\Module as ModuleResource;
-use Faithgen\AppBuild\Http\Resources\Template as TemplateResource;
+use FaithGen\SDK\Helpers\CommentHelper;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Innoflash\Events\Http\Requests\CommentRequest;
 use InnoFlash\LaraStart\Traits\APIResponses;
 
 class ModuleController extends Controller
@@ -75,4 +79,28 @@ class ModuleController extends Controller
 
         return new ModuleDetails($module);
     }
+
+    /**
+     * Fetches the comments of a module.
+     *
+     * @param Request $request
+     * @param Module $module
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function comments(Request $request, Module $module)
+    {
+        return CommentHelper::getComments($module, $request);
+    }
+
+    /**
+     * Sends a comment for the given module.
+     *
+     * @param CommentRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function comment(CommentRequest $request)
+    {
+        return CommentHelper::createComment($this->moduleService->getModule(), $request);
+    }
+
 }
