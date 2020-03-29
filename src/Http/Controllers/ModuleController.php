@@ -41,6 +41,7 @@ class ModuleController extends Controller
         $modules = $this->moduleService->getModel()
             ->active()
             ->exclude(['description'])
+            ->withCount('comments')
             ->get();
 
         return response()->json([

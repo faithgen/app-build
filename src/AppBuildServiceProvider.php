@@ -2,6 +2,8 @@
 
 namespace Faithgen\AppBuild;
 
+use Faithgen\AppBuild\Models\Module;
+use Faithgen\AppBuild\Observers\ModuleObserver;
 use Faithgen\AppBuild\Services\BuildService;
 use Faithgen\AppBuild\Services\ModuleService;
 use FaithGen\SDK\Traits\ConfigTrait;
@@ -38,6 +40,8 @@ class AppBuildServiceProvider extends ServiceProvider
 
         $this->app->singleton(ModuleService::class);
         $this->app->singleton(BuildService::class);
+
+        Module::observe(ModuleObserver::class);
     }
 
     /**
