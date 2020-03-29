@@ -2,7 +2,6 @@
 
 namespace Faithgen\AppBuild\Http\Controllers;
 
-use Carbon\Carbon;
 use Faithgen\AppBuild\Http\Requests\AddModulesRequest;
 use Faithgen\AppBuild\Http\Resources\Module as ModuleResource;
 use Faithgen\AppBuild\Http\Resources\ModuleDetails;

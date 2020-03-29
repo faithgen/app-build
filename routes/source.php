@@ -18,3 +18,15 @@ Route::prefix('builds/')
         Route::get('', [BuildController::class, 'index']);
         Route::get('{build}', [BuildController::class, 'buildLogs']);
     });
+
+Route::prefix('modules')
+    ->group(function () {
+        Route::get('comments/{module}', [ModuleController::class, 'comments']);
+        Route::post('comment', [ModuleController::class, 'comment']);
+    });
+
+Route::prefix('templates')
+    ->group(function () {
+        Route::get('comments/{template}', [ModuleController::class, 'comments']);
+        Route::post('comment', [ModuleController::class, 'comment']);
+    });

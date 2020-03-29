@@ -6,6 +6,7 @@ use Faithgen\AppBuild\Models\Module;
 use Faithgen\AppBuild\Observers\ModuleObserver;
 use Faithgen\AppBuild\Services\BuildService;
 use Faithgen\AppBuild\Services\ModuleService;
+use Faithgen\AppBuild\Services\TemplateService;
 use FaithGen\SDK\Traits\ConfigTrait;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,7 +33,7 @@ class AppBuildServiceProvider extends ServiceProvider
             ], 'faithgen-build-migrations');
         });
 
-        if(!config('faithgen-sdk.source')){
+        if (!config('faithgen-sdk.source')) {
             $this->publishes([
                 __DIR__ . '/../storage' => storage_path('app/public')
             ], 'faithgen-build-storage');
@@ -40,6 +41,7 @@ class AppBuildServiceProvider extends ServiceProvider
 
         $this->app->singleton(ModuleService::class);
         $this->app->singleton(BuildService::class);
+        $this->app->singleton(TemplateService::class);
 
         Module::observe(ModuleObserver::class);
     }
