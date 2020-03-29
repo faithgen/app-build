@@ -3,6 +3,7 @@
 namespace Faithgen\AppBuild\Http\Controllers;
 
 use Faithgen\AppBuild\Http\Requests\AddModulesRequest;
+use Faithgen\AppBuild\Http\Requests\Modules\CommentRequest;
 use Faithgen\AppBuild\Http\Resources\Module as ModuleResource;
 use Faithgen\AppBuild\Http\Resources\ModuleDetails;
 use Faithgen\AppBuild\Http\Resources\Template as TemplateResource;
@@ -12,7 +13,6 @@ use Faithgen\AppBuild\Services\ModuleService;
 use FaithGen\SDK\Helpers\CommentHelper;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Innoflash\Events\Http\Requests\CommentRequest;
 use InnoFlash\LaraStart\Traits\APIResponses;
 
 class ModuleController extends Controller

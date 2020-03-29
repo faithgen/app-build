@@ -2,6 +2,7 @@
 
 use Faithgen\AppBuild\Http\Controllers\BuildController;
 use Faithgen\AppBuild\Http\Controllers\ModuleController;
+use Faithgen\AppBuild\Http\Controllers\TemplateController;
 use Illuminate\Support\Facades\Route;
 
 Route::name('modules.')
@@ -27,6 +28,6 @@ Route::prefix('modules')
 
 Route::prefix('templates')
     ->group(function () {
-        Route::get('comments/{template}', [ModuleController::class, 'comments']);
-        Route::post('comment', [ModuleController::class, 'comment']);
+        Route::get('comments/{template}', [TemplateController::class, 'comments']);
+        Route::post('comment', [TemplateController::class, 'comment']);
     });
