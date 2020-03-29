@@ -3,7 +3,9 @@
 namespace Faithgen\AppBuild;
 
 use Faithgen\AppBuild\Models\Module;
+use Faithgen\AppBuild\Models\Template;
 use Faithgen\AppBuild\Observers\ModuleObserver;
+use Faithgen\AppBuild\Observers\TemplateObserver;
 use Faithgen\AppBuild\Services\BuildService;
 use Faithgen\AppBuild\Services\ModuleService;
 use Faithgen\AppBuild\Services\TemplateService;
@@ -44,6 +46,7 @@ class AppBuildServiceProvider extends ServiceProvider
         $this->app->singleton(TemplateService::class);
 
         Module::observe(ModuleObserver::class);
+        Template::observe(TemplateObserver::class);
     }
 
     /**
