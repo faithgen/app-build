@@ -51,7 +51,9 @@ class ModuleController extends Controller
             'modules' => ModuleResource::collection($modules),
             'data' => [
                 'app_name' => auth()->user()->profile->app_name,
-                'templates' => TemplateResource::collection(Template::latest()->get())
+                'templates' => TemplateResource::collection(Template::latest()
+                    ->exclude(['description'])
+                    ->get())
             ]
         ], 200);
     }

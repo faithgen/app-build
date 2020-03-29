@@ -38,7 +38,7 @@ class TemplateController extends Controller
     }
 
     /**
-     * Sends a comment for the given module.
+     * Sends a comment for the given template.
      *
      * @param CommentRequest $request
      * @return \Illuminate\Http\JsonResponse
