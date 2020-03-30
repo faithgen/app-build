@@ -4,6 +4,7 @@ namespace Faithgen\AppBuild\Models;
 
 use Faithgen\AppBuild\Traits\HasManyBuildRequests;
 use FaithGen\SDK\Models\UuidModel;
+use FaithGen\SDK\Traits\ActiveTrait;
 use FaithGen\SDK\Traits\Relationships\Morphs\CommentableTrait;
 use FaithGen\SDK\Traits\Relationships\Morphs\ImageableTrait;
 use FaithGen\SDK\Traits\StorageTrait;
@@ -15,6 +16,7 @@ class Template extends UuidModel
     use ImageableTrait;
     use CommentableTrait;
     use StorageTrait;
+    use ActiveTrait;
 
     protected $guarded = ['id'];
 

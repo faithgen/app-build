@@ -38,6 +38,7 @@ class TemplateController extends Controller
     {
         $templates = Template::latest()
             ->withCount('comments')
+            ->active()
             ->search(['name', 'branch', 'repository', 'description'], $request->filter_text)
             ->paginate(Helper::getLimit($request));
 

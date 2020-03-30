@@ -19,6 +19,7 @@ class CreateTemplatesTable extends Migration
             $table->string('branch')->unique();
             $table->string('repository');
             $table->text('description')->nullable();
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }
