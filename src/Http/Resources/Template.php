@@ -18,6 +18,9 @@ class Template extends JsonResource
     {
         return array_merge(parent::toArray($request), [
             'created_at' => Helper::getDates($this->created_at),
+	    'comments' => [
+		'count' => $this->comments()->count()
+	    ],
             'images' => $this->images->map(fn($image) => ImageHelper::getImage('templates', $image, config('faithgen-sdk.admin-server')))->toArray()
         ]);
     }
