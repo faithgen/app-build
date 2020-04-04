@@ -21,23 +21,23 @@ class AppBuildServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerRoutes(__DIR__ . '/../routes/build.php', __DIR__ . '/../routes/source.php');
+        $this->registerRoutes(__DIR__.'/../routes/build.php', __DIR__.'/../routes/source.php');
 
         $this->setUpSourceFiles(function () {
-            $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+            $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
             $this->publishes([
-                __DIR__ . '/../config/config.php' => config_path('faithgen-build.php'),
+                __DIR__.'/../config/config.php' => config_path('faithgen-build.php'),
             ], 'faithgen-build-config');
 
             $this->publishes([
-                __DIR__ . '/../database/migrations/' => database_path('migrations'),
+                __DIR__.'/../database/migrations/' => database_path('migrations'),
             ], 'faithgen-build-migrations');
         });
 
         if (!config('faithgen-sdk.source')) {
             $this->publishes([
-                __DIR__ . '/../storage' => storage_path('app/public')
+                __DIR__.'/../storage' => storage_path('app/public'),
             ], 'faithgen-build-storage');
         }
 
@@ -55,7 +55,7 @@ class AppBuildServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'faithgen-build');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'faithgen-build');
 
         // Register the main class to use with the facade
         $this->app->singleton('faithgen-build', function () {
@@ -69,7 +69,7 @@ class AppBuildServiceProvider extends ServiceProvider
     function routeConfiguration(): array
     {
         return [
-            'prefix' => config('faithgen-build.prefix'),
+            'prefix'     => config('faithgen-build.prefix'),
             'middleware' => config('faithgen-build.middlewares'),
         ];
     }
