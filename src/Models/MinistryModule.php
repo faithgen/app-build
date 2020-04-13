@@ -12,6 +12,8 @@ class MinistryModule extends UuidModel
     use BelongsToMinistryTrait;
     use ActiveTrait;
 
+    protected $table = 'fg_ministry_modules';
+
     public function scopeActive($query)
     {
         return $query->whereActive(true);
