@@ -26,7 +26,7 @@ class AddModulesRequest extends FormRequest
     {
         return [
             'modules' => 'required|array',
-            'modules.*' => 'required|' . Helper::$idValidation
+            'modules.*' => 'required|'.Helper::$idValidation,
         ];
     }
 }

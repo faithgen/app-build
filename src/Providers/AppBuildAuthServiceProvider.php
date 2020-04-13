@@ -9,7 +9,7 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 class AppBuildAuthServiceProvider extends ServiceProvider
 {
     protected $policies = [
-        Build::class => BuildPolicy::class
+        Build::class => BuildPolicy::class,
     ];
 
     /**

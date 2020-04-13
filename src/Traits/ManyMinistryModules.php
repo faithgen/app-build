@@ -7,7 +7,7 @@ use Faithgen\AppBuild\Models\MinistryModule;
 trait ManyMinistryModules
 {
     /**
-     * Links the current object to many ministry modules
+     * Links the current object to many ministry modules.
      *
      * @return mixed
      */

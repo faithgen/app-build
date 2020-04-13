@@ -18,7 +18,7 @@ class MinistryModule extends UuidModel
     }
 
     /**
-     * Links this object to a module
+     * Links this object to a module.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

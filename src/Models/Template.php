@@ -25,23 +25,23 @@ class Template extends UuidModel
         'updated_at',
     ];
 
-    function getNameAttribute($val)
+    public function getNameAttribute($val)
     {
         return Str::title($val);
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
-    function filesDir()
+    public function filesDir()
     {
         return 'templates';
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
-    function getFileName()
+    public function getFileName()
     {
         return $this->images()
             ->pluck('name')

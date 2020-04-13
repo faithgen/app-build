@@ -4,7 +4,6 @@ namespace Faithgen\AppBuild\Services;
 
 use Faithgen\AppBuild\Models\Build;
 use InnoFlash\LaraStart\Services\CRUDServices;
-use Illuminate\Database\Eloquent\Model as ParentModel;
 
 class BuildService extends CRUDServices
 {
@@ -12,13 +11,15 @@ class BuildService extends CRUDServices
 
     public function __construct(Build $build)
     {
-        if (request()->has('build_id'))
+        if (request()->has('build_id')) {
             $this->build = Build::findOrFail(request('build_id'));
-        else $this->build = $build;
+        } else {
+            $this->build = $build;
+        }
     }
 
     /**
-     * Retrieves an instance of build
+     * Retrieves an instance of build.
      */
     public function getBuild(): Build
     {
@@ -28,7 +29,7 @@ class BuildService extends CRUDServices
     /**
      * Makes a list of fields that you do not want to be sent
      * to the create or update methods
-     * Its mainly the fields that you do not have in the builds table
+     * Its mainly the fields that you do not have in the builds table.
      */
     public function getUnsetFields()
     {
@@ -37,7 +38,7 @@ class BuildService extends CRUDServices
 
     /**
      * This returns the model found in the constructor
-     * or an instance of the class if no build is found
+     * or an instance of the class if no build is found.
      */
     public function getModel()
     {
@@ -46,7 +47,7 @@ class BuildService extends CRUDServices
 
     /**
      * Attaches a parent to the current build
-     * You can delete this if you do not intent to create builds from parent relationships
+     * You can delete this if you do not intent to create builds from parent relationships.
      */
     public function getParentRelationship()
     {

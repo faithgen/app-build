@@ -6,7 +6,7 @@ use Faithgen\AppBuild\Models\BuildRequest;
 
 trait HasManyBuildRequests
 {
-    function buildRequests()
+    public function buildRequests()
     {
         return $this->hasMany(BuildRequest::class);
     }

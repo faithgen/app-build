@@ -20,7 +20,7 @@ class BuildLog extends JsonResource
             'task' => $this->task,
             'result' => $this->result,
             'success' => (bool) $this->success,
-            'logged_on' => Helper::getDates($this->created_at)
+            'logged_on' => Helper::getDates($this->created_at),
         ];
     }
 }

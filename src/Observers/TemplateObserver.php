@@ -2,7 +2,6 @@
 
 namespace Faithgen\AppBuild\Observers;
 
-
 use Faithgen\AppBuild\Models\Template;
 use FaithGen\SDK\Traits\FileTraits;
 
@@ -40,7 +39,8 @@ class TemplateObserver
      */
     public function deleted(Template $template)
     {
-        if ($template->images)
+        if ($template->images) {
             $this->deleteFiles($template);
+        }
     }
 }

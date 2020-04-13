@@ -16,7 +16,7 @@ class BuildRequest extends UuidModel
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    function template()
+    public function template()
     {
         return $this->belongsTo(Template::class);
     }

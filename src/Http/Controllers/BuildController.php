@@ -45,7 +45,7 @@ class BuildController extends Controller
     public function buildApp(BuildAppRequest $request)
     {
         $profileUpdated = auth()->user()->profile()->update([
-            'app_name' => $request->app_name
+            'app_name' => $request->app_name,
         ]);
 
         if (auth()->user()->buildRequests()
@@ -53,18 +53,19 @@ class BuildController extends Controller
                 'release' => $request->release,
                 'template_id' => $request->template_id,
                 //   'processing' => false,
-                'processed' => false
-            ])->count())
+                'processed' => false,
+            ])->count()) {
             abort(401, 'You already have a build lined up, dont`t worry it will use the latest info');
+        }
 
         if ($profileUpdated) {
             if ($request->release) {
                 $lastBuild = auth()->user()->builds()->latest()->first();
 
-                if (!$lastBuild) $version = '1.0.0';
-
-                else {
-                    $version = (int)((string)Str::of($lastBuild->version)
+                if (! $lastBuild) {
+                    $version = '1.0.0';
+                } else {
+                    $version = (int) ((string) Str::of($lastBuild->version)
                         ->replace('.', ''));
                     $version++;
                     $version = str_split($version);
@@ -75,8 +76,11 @@ class BuildController extends Controller
             }
 
             BuildApp::dispatchNow($request->release, auth()->user()->id, $request->template_id);
+
             return $this->successResponse('App build request sent, you will be notified via email when its done');
-        } else abort(500, 'Failed to update app name');
+        } else {
+            abort(500, 'Failed to update app name');
+        }
     }
 
     /**

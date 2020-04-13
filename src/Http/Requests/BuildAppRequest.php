@@ -27,7 +27,7 @@ class BuildAppRequest extends FormRequest
         return [
             'app_name' => 'required|string',
             'release' => 'required|boolean',
-            'template_id' => Helper::$idValidation
+            'template_id' => Helper::$idValidation,
         ];
     }
 }

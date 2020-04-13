@@ -11,7 +11,7 @@ trait HasManyBuilds
      *
      * @return mixed
      */
-    function builds()
+    public function builds()
     {
         return $this->hasMany(Build::class);
     }

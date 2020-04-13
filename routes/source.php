@@ -2,7 +2,6 @@
 
 use Faithgen\AppBuild\Http\Controllers\BuildController;
 use Faithgen\AppBuild\Http\Controllers\ModuleController;
-use Faithgen\AppBuild\Http\Controllers\TemplateController;
 use Illuminate\Support\Facades\Route;
 
 Route::name('modules.')
@@ -19,5 +18,3 @@ Route::prefix('builds/')
         Route::get('', [BuildController::class, 'index']);
         Route::get('{build}', [BuildController::class, 'buildLogs']);
     });
-
-
