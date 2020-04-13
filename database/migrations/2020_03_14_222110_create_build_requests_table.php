@@ -13,7 +13,7 @@ class CreateBuildRequestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('build_requests', function (Blueprint $table) {
+        Schema::create('fg_build_requests', function (Blueprint $table) {
             $table->string('id')->index();
             $table->string('ministry_id', 150)->index();
             $table->string('template_id', 150)->index();
@@ -34,6 +34,6 @@ class CreateBuildRequestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('build_requests');
+        Schema::dropIfExists('fg_build_requests');
     }
 }

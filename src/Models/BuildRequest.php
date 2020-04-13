@@ -9,6 +9,7 @@ class BuildRequest extends UuidModel
 {
     use BelongsToMinistryTrait;
 
+    protected $table = 'fg_build_requests';
     protected $guarded = ['id'];
 
     /**
