@@ -6,6 +6,7 @@ use FaithGen\SDK\Models\UuidModel;
 
 class BuildLog extends UuidModel
 {
+    protected $table = 'fg_build_logs';
     protected $guarded = ['id'];
     protected $hidden = [
         'build_id',

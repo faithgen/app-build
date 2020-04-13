@@ -13,7 +13,7 @@ class CreateBuildLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('build_logs', function (Blueprint $table) {
+        Schema::create('fg_build_logs', function (Blueprint $table) {
             $table->string('id')->index();
             $table->string('build_id', 150)->index();
             $table->string('task');
@@ -32,6 +32,6 @@ class CreateBuildLogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('build_logs');
+        Schema::dropIfExists('fg_build_logs');
     }
 }
