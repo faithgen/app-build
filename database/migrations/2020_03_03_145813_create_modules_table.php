@@ -13,7 +13,7 @@ class CreateModulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('modules', function (Blueprint $table) {
+        Schema::create('fg_modules', function (Blueprint $table) {
             $table->string('id')->index();
             $table->string('name');
             $table->string('repository');
@@ -32,6 +32,6 @@ class CreateModulesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('modules');
+        Schema::dropIfExists('fg_modules');
     }
 }

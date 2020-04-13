@@ -19,12 +19,13 @@ final class Module extends UuidModel
     use StorageTrait;
 
     protected $guarded = ['id'];
-    public $incrementing = false;
+    protected $table = 'fg_modules';
 
-    protected $hidden = [
-        'created_at',
-        'updated_at',
-    ];
+    protected $hidden
+        = [
+            'created_at',
+            'updated_at',
+        ];
 
     public function getNameAttribute($val)
     {
@@ -52,6 +53,7 @@ final class Module extends UuidModel
      * Formats the description.
      *
      * @param $val
+     *
      * @return string
      */
     public function getDescriptionAttribute($val)
