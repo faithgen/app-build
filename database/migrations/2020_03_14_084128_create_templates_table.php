@@ -13,7 +13,7 @@ class CreateTemplatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('templates', function (Blueprint $table) {
+        Schema::create('fg_templates', function (Blueprint $table) {
             $table->string('id')->index();
             $table->string('name')->unique();
             $table->string('branch')->unique();
@@ -31,6 +31,6 @@ class CreateTemplatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('templates');
+        Schema::dropIfExists('fg_templates');
     }
 }

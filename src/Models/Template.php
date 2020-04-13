@@ -18,6 +18,7 @@ class Template extends UuidModel
     use StorageTrait;
     use ActiveTrait;
 
+    protected $table = 'fg_templates';
     protected $guarded = ['id'];
 
     protected $hidden = [
