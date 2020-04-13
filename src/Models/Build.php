@@ -10,7 +10,7 @@ class Build extends UuidModel
     use BelongsToMinistryTrait;
 
     protected $guarded = ['id'];
-    protected $table = 'app_builds';
+    protected $table = 'fg_app_builds';
 
     /**
      * Links the current build to many logs.

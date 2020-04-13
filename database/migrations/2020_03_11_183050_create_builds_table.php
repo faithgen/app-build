@@ -13,7 +13,7 @@ class CreateBuildsTable extends Migration
      */
     public function up()
     {
-        Schema::create('app_builds', function (Blueprint $table) {
+        Schema::create('fg_app_builds', function (Blueprint $table) {
             $table->string('id')->index();
             $table->string('ministry_id', 150)->index();
             $table->string('version');
@@ -31,6 +31,6 @@ class CreateBuildsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('app_builds');
+        Schema::dropIfExists('fg_app_builds');
     }
 }
