@@ -23,7 +23,7 @@ class Build extends JsonResource
                 'created' => Helper::getDates($this->created_at),
                 'updated' => Helper::getDates($this->updated_at),
             ],
-            'logs_count' => $this->buildLogs()->count()
+            'logs_count' => $this->buildLogs()->count(),
         ];
     }
 }

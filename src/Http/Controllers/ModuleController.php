@@ -36,8 +36,7 @@ class ModuleController extends Controller
     }
 
     /**
-     * Fetches the modules this ministry is subscribed to
-     *
+     * Fetches the modules this ministry is subscribed to.
      */
     public function index()
     {
@@ -54,8 +53,8 @@ class ModuleController extends Controller
                 'templates' => TemplateResource::collection(Template::latest()
                     ->active()
                     ->exclude(['description'])
-                    ->get())
-            ]
+                    ->get()),
+            ],
         ], 200);
     }
 
@@ -63,8 +62,9 @@ class ModuleController extends Controller
     {
         $this->moduleService->invalidateModules();
 
-        if ($this->moduleService->addModules($request->modules))
+        if ($this->moduleService->addModules($request->modules)) {
             return $this->successResponse('Modules updated successfully');
+        }
     }
 
     /**
@@ -104,5 +104,4 @@ class ModuleController extends Controller
     {
         return CommentHelper::createComment($this->moduleService->getModule(), $request);
     }
-
 }

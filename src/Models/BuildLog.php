@@ -8,7 +8,7 @@ class BuildLog extends UuidModel
 {
     protected $guarded = ['id'];
     protected $hidden = [
-      'build_id'
+        'build_id',
     ];
 
     /**
@@ -16,7 +16,7 @@ class BuildLog extends UuidModel
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    function build()
+    public function build()
     {
         return $this->belongsTo(Build::class);
     }

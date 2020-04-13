@@ -17,12 +17,11 @@ class ModuleDetails extends JsonResource
     {
         return array_merge(parent::toArray($request), [
             'used' => $this->used,
-	    'comments' => [
-		'count' => $this->comments()->count()
-	    ],
-            'images' => $this->images->map(fn($image) => ImageHelper::getImage('modules', $image, config('faithgen-sdk.admin-server')))
-                ->toArray()
+            'comments' => [
+                'count' => $this->comments()->count(),
+            ],
+            'images' => $this->images->map(fn ($image) => ImageHelper::getImage('modules', $image, config('faithgen-sdk.admin-server')))
+                ->toArray(),
         ]);
     }
-
 }

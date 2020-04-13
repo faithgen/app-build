@@ -35,7 +35,7 @@ class AppBuildServiceProvider extends ServiceProvider
             ], 'faithgen-build-migrations');
         });
 
-        if (!config('faithgen-sdk.source')) {
+        if (! config('faithgen-sdk.source')) {
             $this->publishes([
                 __DIR__.'/../storage' => storage_path('app/public'),
             ], 'faithgen-build-storage');
@@ -64,9 +64,9 @@ class AppBuildServiceProvider extends ServiceProvider
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
-    function routeConfiguration(): array
+    public function routeConfiguration(): array
     {
         return [
             'prefix'     => config('faithgen-build.prefix'),

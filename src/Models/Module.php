@@ -26,21 +26,23 @@ final class Module extends UuidModel
         'updated_at',
     ];
 
-    function getNameAttribute($val)
+    public function getNameAttribute($val)
     {
         return Str::ucfirst($val);
     }
 
     /**
-     * Checks is if the authenticated user is using this module
+     * Checks is if the authenticated user is using this module.
      *
      * @return bool
      */
-    function getUsedAttribute(): bool
+    public function getUsedAttribute(): bool
     {
-        if (!auth()->user()) return false;
+        if (! auth()->user()) {
+            return false;
+        }
 
-        return (bool)$this->ministryModules()
+        return (bool) $this->ministryModules()
             ->where('ministry_id', auth()->user()->id)
             ->active()
             ->count();
@@ -58,17 +60,17 @@ final class Module extends UuidModel
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
-    function filesDir()
+    public function filesDir()
     {
         return 'modules';
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
-    function getFileName()
+    public function getFileName()
     {
         return $this->images()
             ->pluck('name')

@@ -17,7 +17,7 @@ class Build extends UuidModel
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    function buildLogs()
+    public function buildLogs()
     {
         return $this->hasMany(BuildLog::class);
     }

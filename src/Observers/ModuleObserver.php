@@ -39,7 +39,8 @@ class ModuleObserver
      */
     public function deleted(Module $module)
     {
-        if ($module->images)
+        if ($module->images) {
             $this->deleteFiles($module);
+        }
     }
 }

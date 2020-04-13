@@ -15,7 +15,7 @@ class Module extends JsonResource
     public function toArray($request)
     {
         return array_merge(parent::toArray($request), [
-            'used' => $this->used
+            'used' => $this->used,
         ]);
     }
 }
