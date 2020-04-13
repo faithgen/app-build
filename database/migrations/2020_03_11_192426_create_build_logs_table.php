@@ -21,7 +21,7 @@ class CreateBuildLogsTable extends Migration
             $table->boolean('success');
             $table->timestamps();
 
-            $table->foreign('build_id')->references('id')->on('app_builds')->onDelete('cascade');
+            $table->foreign('build_id')->references('id')->on('fg_app_builds')->onDelete('cascade');
         });
     }
 

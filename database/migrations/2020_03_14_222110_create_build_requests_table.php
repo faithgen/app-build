@@ -22,8 +22,8 @@ class CreateBuildRequestsTable extends Migration
             $table->boolean('processed')->default(false);
             $table->timestamps();
 
-            $table->foreign('ministry_id')->references('id')->on('ministries')->onDelete('cascade');
-            $table->foreign('template_id')->references('id')->on('templates')->onDelete('cascade');
+            $table->foreign('ministry_id')->references('id')->on('fg_ministries')->onDelete('cascade');
+            $table->foreign('template_id')->references('id')->on('fg_templates')->onDelete('cascade');
         });
     }
 

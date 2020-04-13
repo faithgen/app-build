@@ -20,8 +20,8 @@ class CreateMinistryModuleTable extends Migration
             $table->boolean('active')->default(true);
             $table->timestamps();
 
-            $table->foreign('ministry_id')->references('id')->on('ministries')->onDelete('cascade');
-            $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade');
+            $table->foreign('ministry_id')->references('id')->on('fg_ministries')->onDelete('cascade');
+            $table->foreign('module_id')->references('id')->on('fg_modules')->onDelete('cascade');
         });
     }
 
