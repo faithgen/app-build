@@ -1,4 +1,4 @@
-# Very short description of the package
+# App build for FaithGen
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/faithgen/app-build.svg?style=flat-square)](https://packagist.org/packages/faithgen/app-build)
 [![Build Status](https://img.shields.io/travis/faithgen/app-build/master.svg?style=flat-square)](https://travis-ci.org/faithgen/app-build)
