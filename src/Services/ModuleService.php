@@ -4,24 +4,29 @@ namespace Faithgen\AppBuild\Services;
 
 use Faithgen\AppBuild\Models\MinistryModule;
 use Faithgen\AppBuild\Models\Module;
-use Illuminate\Database\Eloquent\Model as ParentModel;
 use InnoFlash\LaraStart\Services\CRUDServices;
 
 class ModuleService extends CRUDServices
 {
-    private Module $module;
+    protected Module $module;
 
-    public function __construct(Module $module)
+    public function __construct()
     {
+        $this->module = new Module();
+
         if (request()->has('module_id')) {
             $this->module = Module::findOrFail(request('module_id'));
-        } else {
-            $this->module = $module;
+        }
+
+        if (request()->route('module')) {
+            $this->module = request()->route('module');
         }
     }
 
     /**
-     * Retrives an instance of module.
+     * Retrieves an instance of module.
+     *
+     * @return \Faithgen\AppBuild\Models\Module
      */
     public function getModule(): Module
     {
@@ -30,33 +35,14 @@ class ModuleService extends CRUDServices
 
     /**
      * Makes a list of fields that you do not want to be sent
-     * to the create or update methods
-     * Its mainly the fields that you do not have in the modules table.
+     * to the create or update methods.
+     * Its mainly the fields that you do not have in the messages table.
+     *
+     * @return array
      */
     public function getUnsetFields(): array
     {
         return ['module_id'];
-    }
-
-    /**
-     * This returns the model found in the constructor
-     * or an instance of the class if no module is found.
-     */
-    public function getModel()
-    {
-        return $this->getModule();
-    }
-
-    /**
-     * Attaches a parent to the current module
-     * You can delete this if you do not intent to create modules from parent relationships.
-     */
-    public function getParentRelationship()
-    {
-        return [
-            ParentModel::class,
-            'relationshipName',
-        ];
     }
 
     /**
