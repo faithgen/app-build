@@ -12,14 +12,14 @@ class ModuleService extends CRUDServices
 
     public function __construct()
     {
-        $this->module = new Module();
+        $this->module = app(Module::class);
 
         if (request()->has('module_id')) {
             $this->module = Module::findOrFail(request('module_id'));
         }
 
-        if (request()->route('module')) {
-            $this->module = request()->route('module');
+        if (request()->route()->hasParameter('module')) {
+            $this->module = $this->module->resolveRouteBinding(request()->route('module'));
         }
     }
 

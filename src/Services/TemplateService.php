@@ -12,14 +12,14 @@ class TemplateService extends CRUDServices
 
     public function __construct()
     {
-        $this->template = new Template();
+        $this->template = app(Template::class);
 
         if (request()->has('template_id')) {
             $this->template = Template::findOrFail(request('template_id'));
         }
 
-        if (request()->route('template')) {
-            $this->template = request()->route('template');
+        if (request()->route()->hasParameter('template')) {
+            $this->template = $this->template->resolveRouteBinding(request()->route('template'));
         }
     }
 
