@@ -8,7 +8,7 @@ use InnoFlash\LaraStart\Services\CRUDServices;
 
 class TemplateService extends CRUDServices
 {
-    private Template $template;
+    protected Template $template;
 
     public function __construct()
     {
@@ -25,6 +25,8 @@ class TemplateService extends CRUDServices
 
     /**
      * Retrieves an instance of template.
+     *
+     * @return \App\Template
      */
     public function getTemplate(): Template
     {
@@ -33,32 +35,13 @@ class TemplateService extends CRUDServices
 
     /**
      * Makes a list of fields that you do not want to be sent
-     * to the create or update methods
-     * Its mainly the fields that you do not have in the templates table.
+     * to the create or update methods.
+     * Its mainly the fields that you do not have in the messages table.
+     *
+     * @return array
      */
     public function getUnsetFields(): array
     {
         return ['template_id'];
-    }
-
-    /**
-     * This returns the model found in the constructor
-     * or an instance of the class if no template is found.
-     */
-    public function getModel()
-    {
-        return $this->getTemplate();
-    }
-
-    /**
-     * Attaches a parent to the current template
-     * You can delete this if you do not intent to create templates from parent relationships.
-     */
-    public function getParentRelationship()
-    {
-        return [
-            ParentModel::class,
-            'relationshipName',
-        ];
     }
 }
