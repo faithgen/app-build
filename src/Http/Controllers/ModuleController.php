@@ -40,7 +40,7 @@ class ModuleController extends Controller
      */
     public function index()
     {
-        $modules = $this->moduleService->getModel()
+        $modules = $this->moduleService->getModule()
             ->active()
             ->exclude(['description'])
             ->withCount('comments')
