@@ -7,19 +7,25 @@ use InnoFlash\LaraStart\Services\CRUDServices;
 
 class BuildService extends CRUDServices
 {
-    private Build $build;
+    protected Build $build;
 
-    public function __construct(Build $build)
+    public function __construct()
     {
+        $this->build = new Build();
+
         if (request()->has('build_id')) {
             $this->build = Build::findOrFail(request('build_id'));
-        } else {
-            $this->build = $build;
+        }
+
+        if (request()->route('build')) {
+            $this->build = request()->route('build');
         }
     }
 
     /**
      * Retrieves an instance of build.
+     *
+     * @return \Faithgen\AppBuild\Models\Build
      */
     public function getBuild(): Build
     {
@@ -28,21 +34,14 @@ class BuildService extends CRUDServices
 
     /**
      * Makes a list of fields that you do not want to be sent
-     * to the create or update methods
-     * Its mainly the fields that you do not have in the builds table.
+     * to the create or update methods.
+     * Its mainly the fields that you do not have in the messages table.
+     *
+     * @return array
      */
-    public function getUnsetFields()
+    public function getUnsetFields(): array
     {
         return ['build_id'];
-    }
-
-    /**
-     * This returns the model found in the constructor
-     * or an instance of the class if no build is found.
-     */
-    public function getModel()
-    {
-        return $this->getBuild();
     }
 
     /**

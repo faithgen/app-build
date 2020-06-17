@@ -10,12 +10,16 @@ class TemplateService extends CRUDServices
 {
     private Template $template;
 
-    public function __construct(Template $template)
+    public function __construct()
     {
+        $this->template = new Template();
+
         if (request()->has('template_id')) {
             $this->template = Template::findOrFail(request('template_id'));
-        } else {
-            $this->template = $template;
+        }
+
+        if (request()->route('template')) {
+            $this->template = request()->route('template');
         }
     }
 
@@ -32,7 +36,7 @@ class TemplateService extends CRUDServices
      * to the create or update methods
      * Its mainly the fields that you do not have in the templates table.
      */
-    public function getUnsetFields()
+    public function getUnsetFields(): array
     {
         return ['template_id'];
     }

@@ -51,7 +51,7 @@ class BuildApp implements ShouldQueue
         BuildRequest::create([
             'ministry_id' => $this->ministryId,
             'template_id' => $this->templateId,
-            'release' => $this->release,
+            'release'     => $this->release,
         ]);
     }
 }

@@ -33,7 +33,7 @@ class ModuleService extends CRUDServices
      * to the create or update methods
      * Its mainly the fields that you do not have in the modules table.
      */
-    public function getUnsetFields()
+    public function getUnsetFields(): array
     {
         return ['module_id'];
     }
@@ -75,7 +75,8 @@ class ModuleService extends CRUDServices
     /**
      * This assigns modules to the ministry.
      *
-     * @param array $modules
+     * @param  array  $modules
+     *
      * @return bool if the assignment worked or not
      */
     public function addModules(array $modules): bool
@@ -83,7 +84,7 @@ class ModuleService extends CRUDServices
         try {
             foreach ($modules as $module) {
                 $params = [
-                    'module_id' => $module,
+                    'module_id'   => $module,
                     'ministry_id' => auth()->user()->id,
                 ];
                 $this->getModel()
