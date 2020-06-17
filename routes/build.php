@@ -15,5 +15,5 @@ Route::prefix('templates')
         Route::get('', [TemplateController::class, 'index']);
         Route::get('{template}', [TemplateController::class, 'show']);
         Route::get('comments/{template}', [TemplateController::class, 'comments']);
-        Route::post('comment', [TemplateController::class, 'comment']);
+        Route::post('comment/{template}', [TemplateController::class, 'comment']);
     });

@@ -2,11 +2,11 @@
 
 namespace Faithgen\AppBuild\Http\Controllers;
 
-use Faithgen\AppBuild\Http\Requests\Templates\CommentRequest;
 use Faithgen\AppBuild\Http\Resources\Template as TemplateResource;
 use Faithgen\AppBuild\Models\Template;
 use Faithgen\AppBuild\Services\TemplateService;
 use FaithGen\SDK\Helpers\CommentHelper;
+use FaithGen\SDK\Http\Requests\CommentRequest;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use InnoFlash\LaraStart\Helper;
@@ -21,7 +21,8 @@ class TemplateController extends Controller
 
     /**
      * TemplateController constructor.
-     * @param TemplateService $templateService
+     *
+     * @param  TemplateService  $templateService
      */
     public function __construct(TemplateService $templateService)
     {
@@ -31,7 +32,8 @@ class TemplateController extends Controller
     /**
      * Fetches the templates.
      *
-     * @param IndexRequest $request
+     * @param  IndexRequest  $request
+     *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index(IndexRequest $request)
@@ -50,8 +52,9 @@ class TemplateController extends Controller
     /**
      * Fetches the comments of a template.
      *
-     * @param Request $request
-     * @param Template $template
+     * @param  Request  $request
+     * @param  Template  $template
+     *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function comments(Request $request, Template $template)
@@ -62,12 +65,14 @@ class TemplateController extends Controller
     /**
      * Sends a comment for the given template.
      *
-     * @param CommentRequest $request
+     * @param  \Faithgen\AppBuild\Models\Template  $template
+     * @param  CommentRequest  $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function comment(CommentRequest $request)
+    public function comment(Template $template, CommentRequest $request)
     {
-        return CommentHelper::createComment($this->templateService->getTemplate(), $request);
+        return CommentHelper::createComment($template, $request);
     }
 
     public function show(Template $template)
