@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('modules')
     ->group(function () {
         Route::get('comments/{module}', [ModuleController::class, 'comments']);
-        Route::post('comment', [ModuleController::class, 'comment']);
+        Route::post('comment/module', [ModuleController::class, 'comment']);
     });
 
 Route::prefix('templates')
