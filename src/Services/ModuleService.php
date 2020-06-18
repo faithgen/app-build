@@ -14,12 +14,10 @@ class ModuleService extends CRUDServices
     {
         $this->module = app(Module::class);
 
-        if (request()->has('module_id')) {
-            $this->module = Module::findOrFail(request('module_id'));
-        }
+        $moduleId = request()->route('module') ?? request('module_id');
 
-        if (request()->route()->hasParameter('module')) {
-            $this->module = $this->module->resolveRouteBinding(request()->route('module'));
+        if($moduleId){
+            $this->module = $this->module->resolveRouteBinding($moduleId);
         }
     }
 

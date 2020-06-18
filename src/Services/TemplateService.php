@@ -13,19 +13,17 @@ class TemplateService extends CRUDServices
     {
         $this->template = app(Template::class);
 
-        if (request()->has('template_id')) {
-            $this->template = Template::findOrFail(request('template_id'));
-        }
+        $templateId = request()->route('template') ?? request('template_id');
 
-        if (request()->route()->hasParameter('template')) {
-            $this->template = $this->template->resolveRouteBinding(request()->route('template'));
+        if($templateId){
+            $this->template = $this->template->resolveRouteBinding($templateId);
         }
     }
 
     /**
      * Retrieves an instance of template.
      *
-     * @return \App\Template
+     * @return \Faithgen\AppBuild\Models\Template
      */
     public function getTemplate(): Template
     {

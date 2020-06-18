@@ -13,12 +13,10 @@ class BuildService extends CRUDServices
     {
         $this->build = app(Build::class);
 
-        if (request()->has('build_id')) {
-            $this->build = Build::findOrFail(request('build_id'));
-        }
+        $buildId = request()->route('build') ?? request('build_id');
 
-        if (request()->route()->hasParameter('build')) {
-            $this->build = $this->build->resolveRouteBinding(request()->route('build'));
+        if($buildId){
+            $this->build = $this->build->resolveRouteBinding($buildId);
         }
     }
 
