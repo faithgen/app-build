@@ -3,7 +3,6 @@
 namespace Faithgen\AppBuild\Services;
 
 use Faithgen\AppBuild\Models\Template;
-use Illuminate\Database\Eloquent\Model as ParentModel;
 use InnoFlash\LaraStart\Services\CRUDServices;
 
 class TemplateService extends CRUDServices
