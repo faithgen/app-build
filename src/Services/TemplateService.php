@@ -15,7 +15,7 @@ class TemplateService extends CRUDServices
 
         $templateId = request()->route('template') ?? request('template_id');
 
-        if($templateId){
+        if ($templateId) {
             $this->template = $this->template->resolveRouteBinding($templateId);
         }
     }

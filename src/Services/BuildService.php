@@ -15,7 +15,7 @@ class BuildService extends CRUDServices
 
         $buildId = request()->route('build') ?? request('build_id');
 
-        if($buildId){
+        if ($buildId) {
             $this->build = $this->build->resolveRouteBinding($buildId);
         }
     }

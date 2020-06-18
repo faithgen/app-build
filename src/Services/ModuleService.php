@@ -16,7 +16,7 @@ class ModuleService extends CRUDServices
 
         $moduleId = request()->route('module') ?? request('module_id');
 
-        if($moduleId){
+        if ($moduleId) {
             $this->module = $this->module->resolveRouteBinding($moduleId);
         }
     }
