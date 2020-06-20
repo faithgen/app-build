@@ -18,6 +18,7 @@ use InnoFlash\LaraStart\Traits\APIResponses;
 class ModuleController extends Controller
 {
     use APIResponses;
+
     /**
      * @var ModuleService
      */
@@ -28,7 +29,7 @@ class ModuleController extends Controller
      *
      * Injects the module service into the controller.
      *
-     * @param  ModuleService  $moduleService
+     * @param ModuleService $moduleService
      */
     public function __construct(ModuleService $moduleService)
     {
@@ -70,7 +71,7 @@ class ModuleController extends Controller
     /**
      * Gets the module with its images.
      *
-     * @param  Module  $module
+     * @param Module $module
      *
      * @return ModuleDetails
      */
@@ -86,8 +87,8 @@ class ModuleController extends Controller
     /**
      * Fetches the comments of a module.
      *
-     * @param  Request  $request
-     * @param  Module  $module
+     * @param Request $request
+     * @param Module $module
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
@@ -99,8 +100,8 @@ class ModuleController extends Controller
     /**
      * Sends a comment for the given module.
      *
-     * @param  \Faithgen\AppBuild\Models\Module  $module
-     * @param  CommentRequest  $request
+     * @param \Faithgen\AppBuild\Models\Module $module
+     * @param CommentRequest $request
      *
      * @return \Illuminate\Http\JsonResponse
      */
