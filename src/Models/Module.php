@@ -21,11 +21,10 @@ final class Module extends UuidModel
     protected $guarded = ['id'];
     protected $table = 'fg_modules';
 
-    protected $hidden
-        = [
-            'created_at',
-            'updated_at',
-        ];
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 
     public function getNameAttribute($val)
     {
@@ -44,9 +43,9 @@ final class Module extends UuidModel
         }
 
         return (bool) $this->ministryModules()
-            ->where('ministry_id', auth()->user()->id)
-            ->active()
-            ->count();
+                           ->where('ministry_id', auth()->user()->id)
+                           ->active()
+                           ->count();
     }
 
     /**
@@ -75,8 +74,8 @@ final class Module extends UuidModel
     public function getFileName()
     {
         return $this->images()
-            ->pluck('name')
-            ->toArray();
+                    ->pluck('name')
+                    ->toArray();
     }
 
     public function getImageDimensions()

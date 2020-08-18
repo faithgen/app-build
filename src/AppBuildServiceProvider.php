@@ -33,6 +33,8 @@ class AppBuildServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../database/migrations/' => database_path('migrations'),
             ], 'faithgen-build-migrations');
+
+            $this->loadFactoriesFrom(__DIR__.'/../database/factories');
         });
 
         if (! config('faithgen-sdk.source')) {

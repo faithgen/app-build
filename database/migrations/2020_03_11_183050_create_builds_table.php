@@ -1,5 +1,6 @@
 <?php
 
+use Faithgen\AppBuild\Models\Build;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +18,7 @@ class CreateBuildsTable extends Migration
             $table->string('id')->index();
             $table->string('ministry_id', 150)->index();
             $table->string('version');
-            $table->enum('status', ['successful', 'failed', 'building'])->default('building');
+            $table->enum('status', Build::BUILD_STATUS)->default('building');
             $table->timestamps();
 
             $table->foreign('ministry_id')->references('id')->on('fg_ministries')->onDelete('cascade');

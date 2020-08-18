@@ -12,6 +12,8 @@ class Build extends UuidModel
     protected $guarded = ['id'];
     protected $table = 'fg_app_builds';
 
+    public const BUILD_STATUS = ['successful', 'failed', 'building'];
+
     /**
      * Links the current build to many logs.
      *
